@@ -1,10 +1,11 @@
 import React from 'react';
+import Navbar from '../components/Navbar';
 
 const HomePage = () => {
   return (
     <div className="min-h-screen bg-neutral-cream font-sans">
       {/* Navbar Section */}
-      
+      <Navbar />
       {/* Hero Section */}
       
       {/* HowItWorks Section */}
