@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
+import HeroSection from '../components/HeroSection';
 
 const HomePage = () => {
   return (
@@ -7,7 +8,7 @@ const HomePage = () => {
       {/* Navbar Section */}
       <Navbar />
       {/* Hero Section */}
-      
+      <HeroSection />
       {/* HowItWorks Section */}
       
       {/* Features Section */}
