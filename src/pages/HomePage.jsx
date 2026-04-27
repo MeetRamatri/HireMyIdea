@@ -6,6 +6,7 @@ import HowItWorksSection from '../components/HowItWorksSection';
 import FeaturesSection from '../components/FeaturesSection';
 import TestimonialsSection from '../components/TestimonialsSection';
 import PricingSection from '../components/PricingSection';
+import FaqSection from '../components/FaqSection';
 
 const HomePage = () => {
   return (
@@ -26,8 +27,9 @@ const HomePage = () => {
       {/* Pricing Section */}
       <PricingSection />
 
-      {/* AppDownload Section */}
-      
+      {/* FAQs & App Download Section */}
+      <FaqSection />
+
       {/* Footer Section */}
     </div>
   );
