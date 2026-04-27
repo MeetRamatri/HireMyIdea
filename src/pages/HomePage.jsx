@@ -7,6 +7,7 @@ import FeaturesSection from '../components/FeaturesSection';
 import TestimonialsSection from '../components/TestimonialsSection';
 import PricingSection from '../components/PricingSection';
 import FaqSection from '../components/FaqSection';
+import AppDownloadSection from '../components/AppDownloadSection';
 
 const HomePage = () => {
   return (
@@ -29,6 +30,9 @@ const HomePage = () => {
 
       {/* FAQs & App Download Section */}
       <FaqSection />
+
+      {/* Dedicated App Download Banner */}
+      <AppDownloadSection />
 
       {/* Footer Section */}
     </div>
