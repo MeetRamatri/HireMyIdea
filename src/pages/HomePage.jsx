@@ -2,6 +2,8 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
 
+import HowItWorksSection from '../components/HowItWorksSection';
+
 const HomePage = () => {
   return (
     <div className="min-h-screen bg-neutral-cream font-sans">
@@ -10,6 +12,7 @@ const HomePage = () => {
       {/* Hero Section */}
       <HeroSection />
       {/* HowItWorks Section */}
+      <HowItWorksSection />
       
       {/* Features Section */}
       
