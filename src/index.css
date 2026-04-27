@@ -1,11 +1,50 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-neutral-cream text-dark font-sans antialiased;
+    margin: 0;
+    background: #faf7f1;
+    color: #253a24;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+@layer utilities {
+  .marquee-row {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: olive-marquee 13s linear infinite;
+  }
+}
+
+@keyframes olive-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
   }
 }
