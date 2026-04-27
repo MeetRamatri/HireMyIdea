@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './Navbar';
 import { AvatarCluster, DownloadButton } from './OlivePrimitives';
 
@@ -10,15 +11,67 @@ const marqueeProducts = [
   'https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=150&q=80'
 ];
 
-const facts = [
-  ['Contaminants', '7', 'bg-[#eb6d65]'],
-  ['Fluoride', 'Yes', 'bg-[#f5b1ad]'],
-  ['PFAS', 'No', 'bg-[#5ab96d]'],
-  ['Microplastics', 'Minimal', 'bg-[#9cd8b0]'],
-  ['pH Level', '5.7', '']
+const heroProducts = [
+  {
+    name: 'San Pellegrino Sparkling Natural Mineral Water',
+    brand: 'S.Pellegrino',
+    score: '52/100',
+    label: 'Limit',
+    scoreColor: '#f2a728',
+    image: 'https://images.unsplash.com/photo-1622484212850-eb596d769edc?auto=format&fit=crop&w=180&q=80',
+    facts: [
+      ['Contaminants', '7', 'bg-[#eb6d65]'],
+      ['Fluoride', 'Yes', 'bg-[#f5b1ad]'],
+      ['PFAS', 'No', 'bg-[#5ab96d]'],
+      ['Microplastics', 'Minimal', 'bg-[#9cd8b0]'],
+      ['pH Level', '5.7', '']
+    ]
+  },
+  {
+    name: 'Organic Berry Kefir Smoothie',
+    brand: 'Straus',
+    score: '96/100',
+    label: 'Excellent',
+    scoreColor: '#4aa85c',
+    image: 'https://images.unsplash.com/photo-1560807707-8cc77767d783?auto=format&fit=crop&w=180&q=80',
+    facts: [
+      ['Contaminants', '1', 'bg-[#9bd9a7]'],
+      ['Fluoride', 'Low', 'bg-[#d6e7d8]'],
+      ['PFAS', 'No', 'bg-[#5ab96d]'],
+      ['Microplastics', 'None', 'bg-[#c9efcf]'],
+      ['pH Level', '6.6', '']
+    ]
+  },
+  {
+    name: 'Late July Organic Tortilla Chips',
+    brand: 'Late July',
+    score: '81/100',
+    label: 'Good',
+    scoreColor: '#8bb845',
+    image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=180&q=80',
+    facts: [
+      ['Contaminants', '2', 'bg-[#f2d486]'],
+      ['Fluoride', 'No', 'bg-[#d6e7d8]'],
+      ['PFAS', 'No', 'bg-[#5ab96d]'],
+      ['Microplastics', 'Low', 'bg-[#bde7c4]'],
+      ['pH Level', '6.1', '']
+    ]
+  }
 ];
 
 const HeroSection = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % heroProducts.length);
+    }, 2800);
+
+    return () => window.clearInterval(interval);
+  }, []);
+
+  const activeProduct = heroProducts[activeIndex];
+
   return (
     <section id="hero" className="px-4 pb-10 pt-4 md:px-6 md:pb-16 md:pt-6">
       <div className="mx-auto max-w-[390px] md:max-w-[1240px]">
@@ -109,67 +162,81 @@ const HeroSection = () => {
                     </div>
                   </div>
 
-                  <motion.div
-                    initial={{ opacity: 0, y: 36, scale: 0.96 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.42 }}
-                    className="relative z-10 mx-auto mt-5 flex h-[128px] w-[112px] items-center justify-center rounded-[24px] bg-white p-2 shadow-[0_16px_32px_rgba(28,45,26,0.12)]"
-                  >
-                    <img
-                      src="https://images.unsplash.com/photo-1622484212850-eb596d769edc?auto=format&fit=crop&w=180&q=80"
-                      alt="San Pellegrino Sparkling Natural Mineral Water"
-                      className="h-full w-full rounded-[18px] object-cover"
-                    />
-                  </motion.div>
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeProduct.name}
+                      initial={{ opacity: 0, y: 24, scale: 0.96 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -18, scale: 0.96 }}
+                      transition={{ duration: 0.62, ease: [0.16, 1, 0.3, 1] }}
+                      className="relative z-10 mx-auto mt-5 flex h-[128px] w-[112px] items-center justify-center rounded-[24px] bg-white p-2 shadow-[0_16px_32px_rgba(28,45,26,0.12)]"
+                    >
+                      <img
+                        src={activeProduct.image}
+                        alt={activeProduct.name}
+                        className="h-full w-full rounded-[18px] object-cover"
+                      />
+                    </motion.div>
+                  </AnimatePresence>
                   <div className="absolute bottom-2 left-1/2 h-1.5 w-11 -translate-x-1/2 rounded-full bg-[#d0d5cf]" />
                 </div>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
-                  className="px-1 pt-6 text-left"
-                >
-                  <h3 className="text-[17px] font-semibold leading-[1.25] tracking-[-0.03em] text-[#334335]">
-                    San Pellegrino Sparkling Natural Mineral Water
-                  </h3>
-                  <p className="mt-1 text-[12px] text-[#8a938b]">S.Pellegrino</p>
+                <div className="px-1 pt-6 text-left">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={`${activeProduct.name}-meta`}
+                      initial={{ opacity: 0, y: 14 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.48, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                      <h3 className="text-[17px] font-semibold leading-[1.25] tracking-[-0.03em] text-[#334335]">
+                        {activeProduct.name}
+                      </h3>
+                      <p className="mt-1 text-[12px] text-[#8a938b]">{activeProduct.brand}</p>
 
-                  <div className="mt-4 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <span className="inline-flex h-3 w-3 rounded-full bg-[#f2a728]" />
-                      <div>
-                        <p className="text-[16px] font-semibold leading-none text-[#1f2f1f]">52/100</p>
-                        <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#89928b]">
-                          Limit
-                        </p>
-                      </div>
-                    </div>
-                    <button type="button" aria-label="Save product" className="text-[#d0d2d0]">
-                      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.9">
-                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                      </svg>
-                    </button>
-                  </div>
-
-                  <div className="mt-4 border-t border-[#edf1eb] pt-4">
-                    <div className="space-y-3">
-                      {facts.map(([label, value, tone]) => (
-                        <div key={label} className="flex items-center justify-between text-[12.5px]">
-                          <span className="text-[#5f6861]">{label}</span>
-                          <span className="flex items-center gap-2 font-semibold text-[#293929]">
-                            {value}
-                            {tone ? <span className={`h-2.5 w-2.5 rounded-full ${tone}`} /> : null}
-                          </span>
+                      <div className="mt-4 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span
+                            className="inline-flex h-3 w-3 rounded-full"
+                            style={{ backgroundColor: activeProduct.scoreColor }}
+                          />
+                          <div>
+                            <p className="text-[16px] font-semibold leading-none text-[#1f2f1f]">
+                              {activeProduct.score}
+                            </p>
+                            <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#89928b]">
+                              {activeProduct.label}
+                            </p>
+                          </div>
                         </div>
-                      ))}
-                    </div>
+                        <button type="button" aria-label="Save product" className="text-[#d0d2d0]">
+                          <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.9">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                          </svg>
+                        </button>
+                      </div>
 
-                    <div className="mt-4 border-t border-[#edf1eb] pt-4">
-                      <p className="text-[13px] font-semibold text-[#2d3d2d]">Contaminants</p>
-                    </div>
-                  </div>
-                </motion.div>
+                      <div className="mt-4 border-t border-[#edf1eb] pt-4">
+                        <div className="space-y-3">
+                          {activeProduct.facts.map(([label, value, tone]) => (
+                            <div key={label} className="flex items-center justify-between text-[12.5px]">
+                              <span className="text-[#5f6861]">{label}</span>
+                              <span className="flex items-center gap-2 font-semibold text-[#293929]">
+                                {value}
+                                {tone ? <span className={`h-2.5 w-2.5 rounded-full ${tone}`} /> : null}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+
+                        <div className="mt-4 border-t border-[#edf1eb] pt-4">
+                          <p className="text-[13px] font-semibold text-[#2d3d2d]">Contaminants</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
               </div>
             </div>
           </div>
