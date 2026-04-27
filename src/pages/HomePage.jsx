@@ -8,6 +8,7 @@ import TestimonialsSection from '../components/TestimonialsSection';
 import PricingSection from '../components/PricingSection';
 import FaqSection from '../components/FaqSection';
 import AppDownloadSection from '../components/AppDownloadSection';
+import FooterSection from '../components/FooterSection';
 
 const HomePage = () => {
   return (
@@ -35,6 +36,7 @@ const HomePage = () => {
       <AppDownloadSection />
 
       {/* Footer Section */}
+      <FooterSection />
     </div>
   );
 };
