@@ -5,6 +5,7 @@ import HeroSection from '../components/HeroSection';
 import HowItWorksSection from '../components/HowItWorksSection';
 import FeaturesSection from '../components/FeaturesSection';
 import TestimonialsSection from '../components/TestimonialsSection';
+import PricingSection from '../components/PricingSection';
 
 const HomePage = () => {
   return (
@@ -23,7 +24,8 @@ const HomePage = () => {
       <TestimonialsSection />
 
       {/* Pricing Section */}
-      
+      <PricingSection />
+
       {/* AppDownload Section */}
       
       {/* Footer Section */}
